@@ -7,6 +7,7 @@ import com.github.tel_ran_de.task4.prestistance.ItemRepositoryMock;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 public class ItemControllerImpl implements ItemController {
     private final ItemRepository itemRepository = new ItemRepositoryMock();
@@ -44,6 +45,26 @@ public class ItemControllerImpl implements ItemController {
         }
     };
 
+    private final static Comparator<Item> CUSTOM_RATING_COMPARATOR = new Comparator<Item>() {
+        @Override
+        public int compare(Item o1, Item o2) {
+            return Double.compare(o2.getRating(), o1.getRating());
+        }
+    };
+
+    private final static Comparator<Item> NAME_PRICE_LOW_HIGH_COMPARATOR = new Comparator<Item>() {
+        @Override
+        public int compare(Item o1, Item o2) {
+            if (!Objects.equals(o1.getName(), o2.getName())) {
+                if (Objects.equals(o1.getName(), o2.getName())) {return 0;}
+                if (o1.getName() == null) {return -1;}
+                if (o2.getName() == null) {return 1;}
+                return o1.getName().compareTo(o2.getName());
+            }
+            return Long.compare (o1.getPriceInCents(), o2.getPriceInCents());
+        }
+    };
+
     private static Comparator<Item> getComparator(SortedOrder order) {
         switch (order) {
             case PRICE_LOW_HIGH:
@@ -51,7 +72,9 @@ public class ItemControllerImpl implements ItemController {
             case PRICE_HIGH_LOW:
                 return PRICE_HIGH_LOW_COMPARATOR;
             case CUSTOM_RATING:
-                return null;
+                return CUSTOM_RATING_COMPARATOR;
+            case NAME_PRICE_LOW_HIGH:
+                return NAME_PRICE_LOW_HIGH_COMPARATOR;
             default:
         }
         throw new IllegalStateException("Неправильный метод сортировки");
@@ -60,7 +83,7 @@ public class ItemControllerImpl implements ItemController {
     public static void main(String[] args) {
         ItemController itemController = new ItemControllerImpl();
 
-        System.out.println("Def sort");
+        System.out.println("PRICE_LOW_HIGH");
         List<Item> itemList = itemController.getSortedItem("toy");
 
         for(Item item: itemList) {
@@ -76,6 +99,20 @@ public class ItemControllerImpl implements ItemController {
                 SortedOrder.PRICE_HIGH_LOW);
 
         for(Item item: itemList1) {
+            System.out.println(item);
+        }
+
+        System.out.println("\n\nCUSTOM_RATING");
+        List<Item> itemListCustom = itemController.getSortedItem("toy", SortedOrder.CUSTOM_RATING);
+
+        for (Item item : itemListCustom) {
+            System.out.println(item);
+        }
+
+        System.out.println("\n\nNAME_PRICE_LOW_HIGH");
+        List<Item> itemListNamePrice = itemController.getSortedItem("toy", SortedOrder.NAME_PRICE_LOW_HIGH);
+
+        for (Item item : itemListNamePrice) {
             System.out.println(item);
         }
     }

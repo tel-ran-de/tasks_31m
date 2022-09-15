@@ -1,6 +1,5 @@
 package com.github.tel_ran_de.task4.data;
 
-
 public class Item implements Comparable<Item>{
     private String name;
     private long priceInCents;

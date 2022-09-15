@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ItemController {
      enum SortedOrder {
-        PRICE_LOW_HIGH, PRICE_HIGH_LOW, CUSTOM_RATING
+        PRICE_LOW_HIGH, PRICE_HIGH_LOW, CUSTOM_RATING, NAME_PRICE_LOW_HIGH
     }
 
      List<Item> getSortedItem(String search) ;
