@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 // Пример обхода Map
-public class MapIterator {
+public class MapIteratorTest {
     public static void main(String[] args) {
 
         // Вводим англорусских словарь

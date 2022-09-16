@@ -2,7 +2,7 @@ package com.github.tel_ran_de;
 
 import java.util.*;
 
-public class SetIterator {
+public class SetIteratorTest {
     public static void main(String[] args) {
 
         Set<String> notTranslateWords = new TreeSet<>(); // в алфавитном порядке сортировка
