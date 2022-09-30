@@ -30,19 +30,9 @@ public class ItemControllerImpl implements ItemController {
         return itemList;
     }
 
-    private final static Comparator<Item> PRICE_LOW_HIGH_COMPARATOR = new Comparator<Item>() {
-        @Override
-        public int compare(Item o1, Item o2) {
-            return Long.compare(o1.getPriceInCents(), o2.getPriceInCents());
-        }
-    };
+    private final static Comparator<Item> PRICE_LOW_HIGH_COMPARATOR = Comparator.comparingLong(Item::getPriceInCents);
 
-    private final static Comparator<Item> PRICE_HIGH_LOW_COMPARATOR = new Comparator<Item>() {
-        @Override
-        public int compare(Item o1, Item o2) {
-            return -Long.compare(o1.getPriceInCents(), o2.getPriceInCents());
-        }
-    };
+    private final static Comparator<Item> PRICE_HIGH_LOW_COMPARATOR = (o1, o2) -> -Long.compare(o1.getPriceInCents(), o2.getPriceInCents());
 
     private static Comparator<Item> getComparator(SortedOrder order) {
         switch (order) {
