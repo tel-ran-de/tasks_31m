@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>SurfHouse</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<header class="BigHeader">
+    <div class="header">
+        <a href="index.html"><img src="images/Logo.png" alt="Logo"></a>
+        <div class="welcome">
+            <p id="welcome">Welcome to surfhouse</p>
+            <p id="text">The only online store you will ever need for all your windsurfing and kitesurf&shy;ing and SUP
+                needs</p>
+        </div>
+        <div class="icons">
+            <a href="#"><i class="fa fa-facebook fa-1x" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-camera-retro" aria-hidden="true"></i></a>
+        </div>
+        <p id="funride">JP FUNRIDE
+            <wbr>
+            2014
+        </p>
+        <p id="super">Super easy going freeride boards based on the X-Cite Ride shape con&shy;cept with additional
+            control and super easy jibing</p>
+        <a href="#">
+            <div class="BuyNow">
+                Buy now
+            </div>
+        </a>
+    </div>
+</header>
+<main class="BigContent">
+    <div class="content">
+        <nav class="menu">
+            <div id="menucaption"><p>Menu</p></div>
+            <a href="#">
+                <div class="menuitem"><p>About</p></div>
+            </a>
+            <a href="#">
+                <div class="menuitem"><p>Apparel</p></div>
+            </a>
+            <a href="#">
+                <div class="menuitem"><p>Surf apparel</p></div>
+            </a>
+            <a href="#">
+                <div class="menuitem"><p>Windsurf</p></div>
+            </a>
+            <!-- <a href="#">
+                <div class="menuitem activeitem"><p>Windsurf</p></div>
+            </a>-->
+            <a href="#">
+                <div class="menuitem"><p>Kitesurf</p></div>
+            </a>
+            <a href="#">
+                <div class="menuitem"><p>Accessories</p></div>
+            </a>
+            <a href="#">
+                <div class="menuitem"><p>Sale</p></div>
+            </a>
+            <a href="#">
+                <div class="menuitem"><p>Brands</p></div>
+            </a>
+            <a href="#">
+                <div class="menuitem"><p>Blog</p></div>
+            </a>
+            <a th:href="@{/admin}">
+                <div class="menuitem"><p>Admin</p></div>
+            </a>
+            <a href="#">
+                <div class="menuitem"><p>Contact</p></div>
+            </a>
+        </nav>
+        <div class="products">
+            <div th:each="element : ${map}" class="newproducts">
+                <div id="newproducts_caption">
+                    <p th:text="${element.key.name}"/>
+                    <div>
+                        <a th:each="product : ${element.value}" href="#" class="product">
+                            <img th:if="${product.isNew} == true" class="triangle" src="images/New.png" alt="new">
+                            <img th:if="${product.isHot} == true" class="triangle" src="images/Hot.png" alt="hot">
+                            <img class="foto" th:src="@{'/image/' + ${product.picture}}" alt="foto1">
+                            <div class="product_name">
+                                <span th:text="${product.name}"/>
+                            </div>
+                            <div class="product_price">
+                                &euro; <span th:text="${product.price}"/><br>
+                                <span class="product_old_price">&euro; <span th:text="${product.oldPrice}"/></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="now">
+        <p>Now is open!</p>
+    </a>
+    <div id="brand">
+        <a href="#"><img src="images/1.jpg" alt="foto1"></a>
+        <a href="#"><img src="images/2.jpg" alt="foto2"></a>
+        <a href="#"><img src="images/3.jpg" alt="foto3"></a>
+        <a href="#"><img src="images/4.gif" alt="foto4"></a>
+        <a href="#"><img src="images/5.jpg" alt="foto5"></a>
+        <a href="#"><img src="images/6.jpg" alt="foto6"></a>
+    </div>
+    <div id="instagram">
+        <p>
+            <i class="fa fa-instagram" aria-hidden="true"></i>
+            Instagram feed: #surfhouse
+        </p>
+    </div>
+    <div id="foto">
+        <a href="#"><img src="images/foto1.png" alt="foto1"></a>
+        <a href="#"><img src="images/foto2.png" alt="foto2"></a>
+        <a href="#"><img src="images/foto3.png" alt="foto3"></a>
+        <a href="#"><img src="images/foto4.png" alt="foto4"></a>
+        <a href="#"><img src="images/foto5.png" alt="foto5"></a>
+        <a href="#"><img src="images/foto6.png" alt="foto6"></a>
+    </div>
+    <div id="stride"></div>
+    <div id="facebook">
+        <a href="#">
+            <div id="f">
+                <i class="fa fa-facebook fa-5x" aria-hidden="true"></i>
+            </div>
+        </a>
+        <a href="#">
+            <div id="t">
+                <i class="fa fa-twitter fa-5x" aria-hidden="true"></i>
+            </div>
+        </a>
+        <a href="#">
+            <div id="p">
+                <i class="fa fa-pinterest-p fa-5x" aria-hidden="true"></i>
+            </div>
+        </a>
+    </div>
+</div>
+</main>
+<footer class="BigFooter">
+    <div class="Footer">
+        <nav id="category">
+            <p class="label">Category</p>
+            <ul class="list">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">about us</a></li>
+                <li><a href="#">eshop</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">new collections</a></li>
+                <li><a href="#">blog</a></li>
+                <li><a href="#">contact</a></li>
+            </ul>
+        </nav>
+        <nav id="accounts">
+            <p class="label">Our Accounts</p>
+            <ul class="list">
+                <li><a href="#">Your account</a></li>
+                <li><a href="#">Personal inforation</a></li>
+                <li><a href="#">Addresses</a></li>
+                <li><a href="#">Discount</a></li>
+                <li><a href="#">Orders history</a></li>
+                <li><a href="#">Addresses</a></li>
+                <li><a href="#">Search Terms</a></li>
+            </ul>
+        </nav>
+        <nav id="support">
+            <p class="label">Our Support</p>
+            <ul class="list">
+                <li><a href="#">Site map</a></li>
+                <li><a href="#">Search terms</a></li>
+                <li><a href="#">Advanced search</a></li>
+                <li><a href="#">Mobile</a></li>
+                <li><a href="#">Contact us</a></li>
+                <li><a href="#">Mobile</a></li>
+                <li><a href="#">Addresses</a></li>
+            </ul>
+        </nav>
+        <div id="news">
+            <p class="label">Newsletter</p>
+            <p class="text">Join thousands of other people subscribe to our news</p>
+            <p>
+                <input type="email" placeholder="INSERT EMAIL">
+                <input type="submit" value="SUBMIT">
+            </p>
+            <div id="cards">
+                <img src="images/aex.png" alt="American Express">
+                <img src="images/master.png" alt="Master Card">
+                <img src="images/maestro.png" alt="aestro">
+                <img src="images/paypal.png" alt="PayPal">
+                <img src="images/discover.png" alt="Discover">
+                <img src="images/visa.png" alt="Visa">
+            </div>
+        </div>
+        <div id="about">
+            <p class="label">About Us</p>
+            <p class="text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dolorum ducimus error ex facilis, impedit
+                in inventore iure nemo numquam pariatur quam quod quos rem repellat rerum sunt ullam unde.
+            </p>
+            <div>
+                Phone: 1-999-342-9876
+                <br>
+                e-mail: <span>info@surfhouse.com</span>
+            </div>
+        </div>
+    </div>
+    <div class="SubFooter">
+        <div class="ContentSubFooter">
+            <div id="copy">
+                &copy; SURFHOUSE. All rights reserved - Designed by theuncreativelab.com
+            </div>
+            <div id="social">
+                <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-tumblr" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>
